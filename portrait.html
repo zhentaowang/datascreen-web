@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+    <title>丽江机场用户画像</title>
+    <link rel="stylesheet" href="www/css/portrait.min.css">
+</head>
+
+<body>
+
+    <div class="menu">
+        <div class="menu-item">
+            <a href="bigscreen1.html">
+                <i class="iconfont icon-shujudaping"></i></br>
+                数据大屏
+            </a>
+            <a href="portrait.html">
+                <i class="iconfont icon-yonghuhuaxiang"></i></br>
+                用户画像
+            </a>
+            <a v-on:click="logout()" href="#">
+                <i class="iconfont icon-tuichu"></i></br>
+                退出
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="portrait-title">
+            <header>
+                <p>丽江机场用户画像</p>
+            </header>
+        </div>
+
+        <div class="tags-tabs" v-show="tagsShow">
+            <div class="toggle" v-on:click="toggle()" v-bind:class="{'active':!istoggle}">
+                <div class="arrow">
+                    <i class="iconfont icon-down-copy-copy"></i>
+                </div>
+            </div>
+            <ul class="tabs-nav">
+                <li class="active">基本信息</li>
+                <li>业务特征</li>
+                <li>两舱服务使用特征</li>
+                <li>要客服务使用特征</li>
+            </ul>
+            <div class="tabs-content" v-bind:class="{'toggled':istoggle}">
+                <div class="item">
+                    <div class="filter">
+                        <label>{{tagsMap.id_city_level}}：</label>
+                        <div class="labels">
+                            <a v-for="el in userTags.id_city_level" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.mobile_phone_location_area}}：</label>
+                        <div class="labels">
+                            <a v-for="el in userTags.mobile_phone_location_area" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.mobile_phone_location_province}}：</label>
+                        <div class="labels">
+                            <a v-for="el in userTags.mobile_phone_location_province" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.has_name}}：</label>
+                        <div class="labels">
+                            <a v-for="el in userTags.has_name" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.sex_type}}：</label>
+                        <div class="labels">
+                            <a v-for="el in userTags.sex_type" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.generation}}：</label>
+                        <div class="labels">
+                            <a v-for="el in userTags.generation" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="item">
+                    <div class="filter">
+                        <label>{{tagsMap.client_type}}：</label>
+                        <div class="labels">
+                            <a v-for="el in cardTags.client_type" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.protocol_type}}：</label>
+                        <div class="labels">
+                            <a v-for="el in cardTags.protocol_type" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.product_type}}：</label>
+                        <div class="labels">
+                            <a v-for="el in cardTags.product_type" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="filter">
+                        <label>{{tagsMap.lounge_type}}：</label>
+                        <div class="labels">
+                            <a v-for="el in appTags.lounge_type" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.lounge_consume_count}}：</label>
+                        <div class="labels">
+                            <a v-for="el in appTags.lounge_consume_count" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.lastest_consume_date_for_in_range_lounge}}：</label>
+                        <div class="labels">
+                            <a v-for="el in appTags.lastest_consume_date_for_in_range_lounge" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.lastest_consume_date_for_not_in_range_lounge}}：</label>
+                        <div class="labels">
+                            <a v-for="el in appTags.lastest_consume_date_for_not_in_range_lounge" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.service_num}}：</label>
+                        <div class="labels">
+                            <a v-for="el in appTags.service_num" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <ul class="tabs-nav1">
+                        <li class="active">候检区</li>
+                        <li>会员区</li>
+                        <li>别院区</li>
+                        <li>6号厅</li>
+                        <li>招行厅</li>
+                        <li>农行厅</li>
+                        <li>工行厅</li>
+                        <li>政要厅</li>
+                    </ul>
+                    <div class="item1" style="display:block">
+                        <!-- <div class="filter">
+                            <label>{{tagsMap.vvip_type}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restTags.vvip_type" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div> -->
+                        <div class="filter">
+                            <label>{{tagsMap.vvip_consume_count}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restTags.vvip_consume_count" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lastest_consume_date_for_in_range_vvip}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restTags.lastest_consume_date_for_in_range_vvip" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+    
+                        <div class="filter">
+                            <label>{{tagsMap.lastest_consume_date_for_not_in_range_vvip}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restTags.lastest_consume_date_for_not_in_range_vvip" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+    
+                        <div class="filter">
+                            <label>{{tagsMap.service_num}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restTags.service_num" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="item">
+                    <div class="filter">
+                        <label>{{tagsMap.dragoncard_point_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.dragoncard_point_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.car_coupon_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.car_coupon_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.car_equity_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.car_equity_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.vvip_coupon_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.vvip_coupon_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.vvip_equity_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.vvip_equity_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.vvip_car_coupon_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.vvip_car_coupon_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.vvip_car_equity_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.vvip_car_equity_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+
+                    <div class="filter">
+                        <label>{{tagsMap.cip_coupon_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.cip_coupon_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.cip_equity_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.cip_equity_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.lounge_coupon_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.lounge_coupon_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.lounge_equity_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.lounge_equity_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.guest_coupon_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.guest_coupon_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.guest_equity_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.guest_equity_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.parking_coupon_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.parking_coupon_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.parking_equity_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.parking_equity_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.cashvoucher_coupon_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.cashvoucher_coupon_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.cashvoucher_equity_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.cashvoucher_equity_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.cash_count_id}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.cash_count_id" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <label>{{tagsMap.meal_count}}：</label>
+                        <div class="labels">
+                            <a v-for="el in acountTags.meal_count" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                            {{el.name}}
+                        </a>
+                        </div>
+                    </div>
+
+                </div> -->
+                <!-- <div class="item">
+                    <ul class="tabs-nav1" style="display:block">
+                        <li class="active">候检区</li>
+                        <li>会员区</li>
+                        <li>别院区</li>
+                        <li>6号厅</li>
+                        <li>招行厅</li>
+                        <li>农行厅</li>
+                        <li>工行厅</li>
+                        <li>政要厅</li>
+                    </ul>
+                    <div class="item1" style="display:block">
+                        <div class="filter">
+                            <label>{{tagsMap.vvip_type}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restTags.vvip_type" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.vvip_consume_count}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restTags.vvip_consume_count" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lastest_consume_date_for_in_range_vvip}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restTags.lastest_consume_date_for_in_range_vvip" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="filter">
+                            <label>{{tagsMap.lastest_consume_date_for_not_in_range_vvip}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restTags.lastest_consume_date_for_not_in_range_vvip" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="filter">
+                            <label>{{tagsMap.service_num}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restTags.service_num" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item1">
+                        <div class="filter">
+                            <label>{{tagsMap.channelbill_order_number}}：</label>
+                            <div class="labels">
+                                <a v-for="el in channelbill.channelbill_order_number" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.channelbill_last_order_time}}：</label>
+                            <div class="labels">
+                                <a v-for="el in channelbill.channelbill_last_order_time" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.channelbill_last_order_time_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in channelbill.channelbill_last_order_time_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.channelbill_count_interval}}：</label>
+                            <div class="labels">
+                                <a v-for="el in channelbill.channelbill_count_interval" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.channelbill_latest_date_consume}}：</label>
+                            <div class="labels">
+                                <a v-for="el in channelbill.channelbill_latest_date_consume" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.channelbill_latest_date_consume_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in channelbill.channelbill_latest_date_consume_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.channelbill_has_isproom}}：</label>
+                            <div class="labels">
+                                <a v-for="el in channelbill.channelbill_has_isproom" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.channelbill_has_person_equal_orderperson}}：</label>
+                            <div class="labels">
+                                <a v-for="el in channelbill.channelbill_has_person_equal_orderperson" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.channelbill_has_ischannel}}：</label>
+                            <div class="labels">
+                                <a v-for="el in channelbill.channelbill_has_ischannel" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="item1">
+                        <div class="filter">
+                            <label>{{tagsMap.parking_order_number}}：</label>
+                            <div class="labels">
+                                <a v-for="el in parking.parking_order_number" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.parking_last_order_time}}：</label>
+                            <div class="labels">
+                                <a v-for="el in parking.parking_last_order_time" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.parking_last_order_time_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in parking.parking_last_order_time_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.parking_count_interval}}：</label>
+                            <div class="labels">
+                                <a v-for="el in parking.parking_count_interval" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.parking_latest_date_consume}}：</label>
+                            <div class="labels">
+                                <a v-for="el in parking.parking_latest_date_consume" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.parking_latest_date_consume_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in parking.parking_latest_date_consume_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.parking_has_long_time_parking}}：</label>
+                            <div class="labels">
+                                <a v-for="el in parking.parking_has_long_time_parking" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.parking_has_middle_time_parking}}：</label>
+                            <div class="labels">
+                                <a v-for="el in parking.parking_has_middle_time_parking" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.parking_has_short_time_parking}}：</label>
+                            <div class="labels">
+                                <a v-for="el in parking.parking_has_short_time_parking" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="item1">
+
+                        <div class="filter">
+                            <label>{{tagsMap.cip_order_number}}：</label>
+                            <div class="labels">
+                                <a v-for="el in cip.cip_order_number" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.cip_last_order_time}}：</label>
+                            <div class="labels">
+                                <a v-for="el in cip.cip_last_order_time" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.cip_last_order_time_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in cip.cip_last_order_time_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.cip_count_interval}}：</label>
+                            <div class="labels">
+                                <a v-for="el in cip.cip_count_interval" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.cip_latest_date_consume}}：</label>
+                            <div class="labels">
+                                <a v-for="el in cip.cip_latest_date_consume" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.cip_latest_date_consume_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in cip.cip_latest_date_consume_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="item1">
+                        <div class="filter">
+                            <label>{{tagsMap.restaurant_consume_price_avg}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restaurant.restaurant_consume_price_avg" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="filter">
+                            <label>{{tagsMap.restaurant_order_number}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restaurant.restaurant_order_number" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.restaurant_last_order_time}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restaurant.restaurant_last_order_time" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.restaurant_last_order_time_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restaurant.restaurant_last_order_time_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.restaurant_count_interval}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restaurant.restaurant_count_interval" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.restaurant_latest_date_consume}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restaurant.restaurant_latest_date_consume" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.restaurant_latest_date_consume_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restaurant.restaurant_latest_date_consume_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.restaurant_one_day_consume_twice}}：</label>
+                            <div class="labels">
+                                <a v-for="el in restaurant.restaurant_one_day_consume_twice" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="item1">
+
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_service_has_International_airport}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge_service.lounge_service_has_International_airport" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_service_has_domestic_airport}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge_service.lounge_service_has_domestic_airport" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_service_has_domestic_depart}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge_service.lounge_service_has_domestic_depart" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_service_has_high_speed_rail}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge_service.lounge_service_has_high_speed_rail" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_service_has_international_depart}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge_service.lounge_service_has_international_depart" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_service_order_number}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge_service.lounge_service_order_number" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_service_last_order_time}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge_service.lounge_service_last_order_time" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_service_last_order_time_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge_service.lounge_service_last_order_time_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_service_count_interval}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge_service.lounge_service_count_interval" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_service_latest_date_consume}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge_service.lounge_service_latest_date_consume" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_service_latest_date_consume_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge_service.lounge_service_latest_date_consume_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="item1">
+                        <div class="filter">
+                            <label>{{tagsMap.membership_annual_card}}：</label>
+                            <div class="labels">
+                                <a v-for="el in membership.membership_annual_card" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="filter">
+                            <label>{{tagsMap.membership_high_speed_rail_card}}：</label>
+                            <div class="labels">
+                                <a v-for="el in membership.membership_high_speed_rail_card" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.membership_ordinary_card}}：</label>
+                            <div class="labels">
+                                <a v-for="el in membership.membership_ordinary_card" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.membership_point_card}}：</label>
+                            <div class="labels">
+                                <a v-for="el in membership.membership_point_card" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.membership_order_number}}：</label>
+                            <div class="labels">
+                                <a v-for="el in membership.membership_order_number" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.membership_last_order_time}}：</label>
+                            <div class="labels">
+                                <a v-for="el in membership.membership_last_order_time" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.membership_last_order_time_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in membership.membership_last_order_time_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.membership_count_interval}}：</label>
+                            <div class="labels">
+                                <a v-for="el in membership.membership_count_interval" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.membership_latest_date_consume}}：</label>
+                            <div class="labels">
+                                <a v-for="el in membership.membership_latest_date_consume" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.membership_latest_date_consume_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in membership.membership_latest_date_consume_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="item1">
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_order_number}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge.lounge_order_number" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_last_order_time}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge.lounge_last_order_time" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_last_order_time_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge.lounge_last_order_time_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_count_interval}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge.lounge_count_interval" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_latest_date_consume}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge.lounge_latest_date_consume" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_latest_date_consume_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge.lounge_latest_date_consume_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="filter">
+                            <label>{{tagsMap.lounge_point_trading}}：</label>
+                            <div class="labels">
+                                <a v-for="el in lounge.lounge_point_trading" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item1">
+
+                        <div class="filter">
+                            <label>{{tagsMap.give_point_order_number}}：</label>
+                            <div class="labels">
+                                <a v-for="el in give_point.give_point_order_number" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.give_point_last_order_time}}：</label>
+                            <div class="labels">
+                                <a v-for="el in give_point.give_point_last_order_time" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.give_point_last_order_time_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in give_point.give_point_last_order_time_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.give_point_count_interval}}：</label>
+                            <div class="labels">
+                                <a v-for="el in give_point.give_point_count_interval" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.give_point_latest_date_consume}}：</label>
+                            <div class="labels">
+                                <a v-for="el in give_point.give_point_latest_date_consume" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                        <div class="filter">
+                            <label>{{tagsMap.give_point_latest_date_consume_for_not_in_range}}：</label>
+                            <div class="labels">
+                                <a v-for="el in give_point.give_point_latest_date_consume_for_not_in_range" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+
+                        <div class="filter">
+                            <label>{{tagsMap.give_point_point_trading}}：</label>
+                            <div class="labels">
+                                <a v-for="el in give_point.give_point_point_trading" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item1">
+                        <div class="filter">
+                            <label>{{tagsMap.promotion_count}}：</label>
+                            <div class="labels">
+                                <a v-for="el in promotion.promotion_count" v-on:click="choose(el)" v-bind:class="{'active': el.selected}">
+                                {{el.name}}
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> -->
+            </div>
+            <div class="filter-choose">
+                <div class="line"></div>
+                <div class="filter">
+                    <label>分布：</label>
+                    <div class="labels">
+                        <select v-model="option1" v-on:change="change">
+                            <option value="0" selected>----请选择----</option>
+                            <option v-for="option in options" v-bind:value="option.name">
+                                {{ option.name }}
+                            </option>
+                        </select>
+                        <div style="display:inline-block" v-if="willShow">
+                            <select v-model="option2">
+                                <option value="0" selected>----请选择----</option>
+                                <option v-for="suboption in subOption" v-bind:value="suboption.type">
+                                    {{ suboption.name }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div style="display:inline-block" v-else>
+                            <select v-model="option2" v-on:change="change2">
+                                <option value="0" selected>----请选择----</option>
+                                <option v-for="suboption in subOption" v-bind:value="suboption.name">
+                                    {{ suboption.name }}
+                                </option>
+                            </select>
+                            <select v-model="thrName">
+                                <option value="0" selected>----请选择----</option>
+                                <option v-for="throption in thrOption" v-bind:value="throption.type">
+                                    {{ throption.name }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <a class="button" v-on:click="click()">查看画像</a>
+                    </div>
+                </div>
+
+                <label>已选标签：</label>
+                <div class="chooselist">
+                    <a v-for="el in chooseList">
+                    {{el.display_name}}
+                </a>
+                    <a v-on:click="clear()" class="button" style="float:right">清空标签</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-user" v-show="noUserShow">
+            共找到<span class="blue">0</span>个用户
+        </div>
+
+        <div class="user-chart" v-show="portraitShow">
+            <div class="title">
+                <em>■</em> 用户画像
+            </div>
+            <div class="chart-content">
+                <div id="userChart" style="width:1000px;height:600px;margin:0 auto;"></div>
+            </div>
+        </div>
+
+        <div class="portrait-all" v-show="portraitAllShow">
+            <div class="chart-map">
+                <a href="user_list.html" target="_blank" class="header">
+                标签选择共找到<span class="blue">{{userCount}}</span>个用户
+            </a>
+                <div class="map" id="chinaMap"></div>
+            </div>
+            <div class="chart4 chart4-1">
+                <div class="title">
+                    <em>■</em> 所属银行分布
+                </div>
+                <div class="content" id="chart1"></div>
+            </div>
+            <div class="chart4 chart4-2">
+                <div class="title">
+                    <em>■</em> 休息室使用次数分布
+                </div>
+                <div class="content" id="chart2"></div>
+            </div>
+            <div class="chart4 chart4-3">
+                <div class="title">
+                    <em>■</em> 性别分布
+                </div>
+                <div class="content" id="chart3"></div>
+            </div>
+            <div class="chart4 chart4-4">
+                <div class="title">
+                    <em>■</em> 年龄分布
+                </div>
+                <div class="content" id="chart4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="www/lib/jquery.min.js"></script>
+    <script src="www/lib/vue.min.js"></script>
+    <script src="www/lib/echarts.min.js"></script>
+    <script src="www/lib/china.js"></script>
+    <script src="src/js/common.js"></script>
+    <script src="src/js/data.js"></script>
+    <script src="src/js/dataKey.js"></script>
+    <script src="src/js/portrait.js"></script>
+</body>
+
+</html>

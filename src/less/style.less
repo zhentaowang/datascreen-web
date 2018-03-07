@@ -1,0 +1,387 @@
+@import "libs/config.less";
+@import "libs/iconfont.less";
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+body{
+    font-family: Arial,Helvetica,'Microsoft YaHei',sans-serif,'华文黑体';
+}
+.bg{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: -webkit-linear-gradient(top, #15296e, #174db3);
+    background-size: 100% 100%;
+    z-index: 1;
+}
+.grid{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background:
+        -webkit-linear-gradient(top, transparent 9px, rgba(255,255,255,.05) 10px),
+        -webkit-linear-gradient(left, transparent 9px, rgba(255,255,255,.05) 10px)
+        ;
+    background-size: 10px 10px;
+    z-index: 2;
+}
+
+.title{
+    color: @blue;
+    font-size: 14px;
+    background-color: #094e8c;
+    padding: 1em;
+
+    & > em{
+        font-style: normal;
+        font-size: 12px;
+    }
+}
+
+.start-pause{
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    z-index: 999;
+    cursor: pointer;
+
+    .pause{
+        background: url(../img/pause.png);
+        width: 100px;
+        height: 100px;
+        display: none;
+
+        &.start{
+            background: url(../img/start.png);
+        }
+    }
+
+    &:hover{
+        
+        .pause{
+            display: block;
+        }
+    }
+}
+
+.bigscreen{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 1080px;
+    z-index: 3;
+
+    .world{
+        position: absolute;
+        width: 1400px;
+        height: 1080px;
+        left: 50%;
+        margin-left: -700px;
+        top: 0;
+        z-index: 5;
+    }
+
+    .left{
+        position: absolute;
+        top: 20px;
+        left: 3px;
+        width: 490px;
+        z-index: 999;
+    }
+
+    .right{
+        position: absolute;
+        top: 20px;
+        right: 3px;
+        width: 490px;
+        z-index: 999;
+    }
+
+    .bottom-tab{
+        position: absolute;
+        top: 730px;
+        left: 0;
+        width: 100%;
+        padding: 0 3px;
+        z-index: 999;
+
+        & > .nav{
+            position: absolute;
+            left: 3px;
+            border: 1px solid @border-color;
+            background-color: #092042;
+            padding: 3px;
+
+            & > li{
+                display: block;
+                width: 105px;
+                height: 160px;
+                text-align: center;
+                line-height: 150px;
+                background-color: #094e8c;
+                color: white;
+                cursor: pointer;
+
+                &.active{
+                    background-color: @blue;
+                }
+                &:first-child{
+                    margin-bottom: 3px;
+                }
+            }
+        }
+
+        & > .content{
+            position: absolute;
+            left: 116px;
+            right: 0;
+
+            & > li{
+                opacity: 0;
+
+                &:first-child{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .chartContent{
+        background-color: #09284c;
+
+        &.fourchart{
+            display: flex;
+
+            .chart-box{
+                flex: 1;
+
+                .chart{
+                    width: 350px;
+                    height: 283px;
+                }
+            }
+        }
+    }
+
+    .center{
+        position: absolute;
+        padding-top: 20px;
+        z-index: 999;
+        width: 100%;
+
+        & > header{
+            position: relative;
+            text-align: center;
+            width: 600px;
+            height: 82px;
+            margin: 0 auto;
+            font-size: 40px;
+            background: url(../img/title.png);
+            margin-bottom: 15px;
+            z-index: 999;
+
+            & > p{
+                background: -webkit-linear-gradient(top, #def2fa, #8be1f1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                padding-top: 10px;
+            }
+        }
+
+        .display-number{
+            width: 900px;
+            margin: 0 auto;
+            color: @blue;
+
+            & > table{
+                width: 100%;
+
+                tr{
+                    td{
+                        padding: 2px 0;
+
+                        &:first-child{
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+
+            .number{
+                font-size: 48px;
+                display: inline-block;
+                margin-right: 20px;
+                height: 60px;
+
+                & > span{
+                    display: inline-block;
+                    text-align: center;
+                    height: 60px;
+
+                    i{
+                        background: -webkit-linear-gradient(top, #ffba00, #ffba00);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        font-style: normal;
+                        line-height: 60px;
+                    }
+                }
+                .num{
+                    width: 42px;
+                    background-image: url(../img/numbg.png);
+                    margin: 0 2px;
+                }
+            }
+        }
+    }
+}
+
+.fade-wrap{
+    height: 100%;
+    .nav{
+        border-bottom: 2px solid #084d8b;
+        padding-top: 3px;
+        text-align: center;
+        background-color: rgba(13, 27, 38, .3);
+        display: flex;
+
+        &.nav-right{
+            li{
+                padding: 0;
+                line-height: 64px;
+                font-size: 14px;
+            }
+        }
+
+        li{
+            display: inline-block;
+            background-color: rgba(13, 27, 38, .5);
+            color: @blue;
+            font-size: 12px;
+            flex: 1;
+            border: 2px solid #0b284d;
+            padding: .5em;
+            cursor: pointer;
+            height: 64px;
+
+            &.active{
+                background-color: #094e8c;
+                color: white;
+            }
+        }
+    }
+    .content{
+        position: relative;
+        background-color: rgba(9, 39, 73, .9);
+        height: 580px;
+
+        li{
+            width: 100%;
+            position: absolute;
+            color: white;
+            opacity: 0;
+
+            &:first-child{
+                opacity: 1;
+            }
+        }
+
+        &.content-right{
+            li{
+                .pure-table{
+                    tbody{
+                        tr{
+                            td{
+                                height: 53px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pure-table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    
+    thead{
+        tr{
+            border-bottom: 1px solid white;
+            th{
+                padding: 1em .5em;
+                font-weight: normal;
+                text-align: center;
+
+                &:nth-child(2){
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    tbody{
+        tr{
+            border-bottom: 1px solid #364b6d;
+
+            &:last-child{
+                border: none;
+            }
+
+            td{
+                text-align: center;
+                padding: .5em;
+
+                &:nth-child(1){
+                    width: 75px;
+                }
+                &:nth-child(2){
+                    text-align: left;
+                }
+                &:nth-child(3){
+                    width: 75px;
+                }
+                &:nth-child(4){
+                    width: 75px;
+                }
+
+                & > span{
+                    border-radius: 3px;
+                    width: 18px;
+                    height: 18px;
+                    display: inline-block;
+                    background-color: @light-blue;
+                    line-height: 18px;
+                    font-size: 14px;
+                }
+                .up{
+                    color: @red;
+                }
+
+                .down{
+                    color: @green;
+                }
+            }
+
+            &:nth-child(1),&:nth-child(2),&:nth-child(3){
+                td{
+                    & > span{
+                        background-color: @yellow;
+                    }
+                }
+            }
+        }
+    }
+}

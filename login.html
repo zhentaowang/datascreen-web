@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<title>龙腾用户登录</title>
+<link rel="stylesheet" href="www/css/user.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="box">
+            <h2>Login</h2>
+            <div class="btn">
+                <label class="iconfont icon-zhanghao"></label>
+                <input type="text" v-model="username" placeholder="请输入账户">
+            </div>
+            <div class="btn pwd" style="margin-top:10px;">
+                <label class="iconfont icon-mima"></label>
+                <input type="password" v-model="password" placeholder="请输入密码">
+            </div>
+            <div class="send-btn" >
+                <div class="error-msg" v-show="errorShow">{{message}}</div>
+                <button v-on:click="login()" disabled="{{flag}}" type="button">登录</button>
+            </div>
+        </div>
+    </div>
+
+<script src="www/lib/jquery.min.js"></script>
+<script src="www/lib/vue.min.js"></script>
+<script src="src/js/common.js"></script>
+<script src="src/js/login.js"></script>
+</body>
+</html>

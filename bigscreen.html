@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<title>龙腾大屏</title>
+<link rel="stylesheet" href="www/css/style.min.css">
+</head>
+<body>
+<div class="bg"></div>
+<div class="grid"></div>
+<!--<div class="start-pause">
+    <div class="pause"></div>
+</div>-->
+
+<div class="bigscreen">
+    <div class="world" id="charts"></div>
+    <div class="center">
+        <header>
+            <p>龙腾数据展示系统</p>
+        </header>
+        <div class="display-number">
+            <!--<div>{{time}}</div>-->
+            <table>
+                <tr>
+                    <td>
+                        <div class="number">
+                            <span v-for="n in cardNumber" class="{{n.type}}">
+                                <i>{{n.name}}</i>
+                            </span>
+                        </div>
+                    </td>
+                    <td>开卡数</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="number">
+                            <span v-for="n in personNumber" class="{{n.type}}">
+                                <i>{{n.name}}</i>
+                            </span>
+                        </div>
+                    </td>
+                    <td>休息室累计使用人次</td>
+                </tr>
+            </table>
+        </div>   
+    </div>
+    <div class="left">
+        <header class="title">
+            <em>■</em> 全球热门休息室/Global Top Lounge
+        </header>
+        <div id="leftFade" class="fade-wrap">
+            <ul class="nav nav-left">
+                <li class="active">
+                    中东<br>
+                    Middle<br>
+                    East
+                </li>
+                <li>
+                    亚洲<br>
+                    Asia<br>
+                    &nbsp;
+                </li>
+                <li>
+                    欧洲<br>
+                    Europe<br>
+                    &nbsp;
+                </li>
+                <li>
+                    南美洲<br>
+                    South<br>
+                    America
+                </li>
+                <li>
+                    非洲<br>
+                    Afica<br>
+                    &nbsp;
+                </li>
+                <li>
+                    大洋洲<br>
+                    Oceania<br>
+                    &nbsp;
+                </li>
+                <li>
+                    北美洲<br>
+                    North<br>
+                    America
+                </li>
+            </ul>
+            <ul class="content content-left">
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[0].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[1].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[2].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[3].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[4].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[5].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[6].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right">
+        <header class="title">
+            <em>■</em> 来源渠道/Source channel
+        </header>
+        <div id="rightFade" class="fade-wrap">
+            <ul class="nav nav-right">
+                <li class="active">
+                    境内企业机构
+                </li>
+                <li>
+                    境外企业机构
+                </li>
+                <li>
+                    OTA
+                </li>
+            </ul>
+            <ul class="content content-right">
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>企业机构/Enterprise organization</th>
+                                <th>单日累计</th>
+                                <th>当月累计</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in agency[0].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.agreement_cardname}}<br>
+                                </td>
+                                <td>
+                                    {{el.dayNum}}
+                                </td>
+                                <td>
+                                    {{el.monthNum}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>企业机构/Enterprise organization</th>
+                                <th>单日累计</th>
+                                <th>当月累计</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in agency[1].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.agreement_cardname}}<br>
+                                </td>
+                                <td>
+                                    {{el.dayNum}}
+                                </td>
+                                <td>
+                                    {{el.monthNum}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>企业机构/Enterprise organization</th>
+                                <th>单日累计</th>
+                                <th>当月累计</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in agency[2].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.agreement_cardname}}<br>
+                                </td>
+                                <td>
+                                    {{el.dayNum}}
+                                </td>
+                                <td>
+                                    {{el.monthNum}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="bottom-tab" id="bottomFade">
+        <ul class="nav">
+            <li class="active">总表</li>
+            <li>分项表格</li>
+        </ul>
+        <ul class="content">
+            <li>
+                <div style="position:absolute;left:0;">
+                    <header class="title">
+                        <em>■</em> 日开卡数、休息室使用人次
+                    </header>
+                    <div class="chartContent">
+                        <div id="evolutionDay" style="width:1048px;height:283px;"></div>
+                    </div>
+                </div>
+
+                <div style="position:absolute;right:3px;">
+                    <header class="title">
+                        <em>■</em> 月开卡数、休息室使用人次
+                    </header>
+                    <div class="chartContent">
+                        <div id="evolutionMonth" style="width:740px;height:283px;"></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div style="position:absolute;left:0;">
+                    <header class="title">
+                        <em>■</em> App用户/App User
+                    </header>
+                    <div class="chartContent">
+                        <div id="appUser" style="width:360px;height:283px;"></div>
+                    </div>
+                </div>
+
+                <div style="position:absolute;right:3px;">
+                    <header class="title">
+                        <em>■</em> App订单
+                    </header>
+                    <div class="chartContent fourchart" style="width:1430px;height:283px;">
+                        <div class="chart-box">
+                            <div class="chart" id="chart1"></div>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart" id="chart2"></div>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart" id="chart3"></div>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart" id="chart4"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+<script src="www/lib/jquery.min.js"></script>
+<script src="www/lib/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/echarts/3.3.0/echarts.min.js"></script>
+<script src="www/lib/world.js"></script>
+<script src="src/js/common.js"></script>
+<script src="src/js/home.js"></script>
+</body>
+</html>

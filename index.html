@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<title>丽江机场用户画像</title>
+<link rel="stylesheet" href="www/css/user.min.css">
+</head>
+<body class="nav-body">
+<div class="container">
+    <div class="nav">
+        <a v-for="el in list" href="{{el.url}}" v-on:click="checkClick(el.disabled,$event)">
+            <i class="iconfont {{el.icon}}"></i></br>
+            {{el.text}}
+        </a>
+    </div>
+    <div class="logout" v-on:click="logout()" v-show="isLogin">
+        <i class="iconfont icon-tuichu"></i>
+        &nbsp;退出
+    </div>
+</div>
+
+<script src="www/lib/jquery.min.js"></script>
+<script src="www/lib/vue.min.js"></script>
+<script src="src/js/common.js"></script>
+<script>
+if(!User.isLogin()){
+    document.location.href = 'login.html';
+}
+var vm = new Vue({
+    el: 'body',
+    data: {
+        isLogin: User.isLogin(),
+        list: [{
+            text: '数据大屏',
+            icon: 'icon-shujudaping',
+            url: 'bigscreen1.html',
+            disabled: false
+        },{
+            text: '用户画像',
+            icon: 'icon-yonghuhuaxiang',
+            url: 'portrait.html',
+            disabled: true
+        }]
+    },
+    methods:{
+        logout: function() {
+            User.logout();
+            document.location.href = 'login.html';
+        },
+        checkClick: function(disabled,event){
+            if(!User.isLogin()){
+                event.preventDefault();
+                document.location.href = 'login.html';
+            }
+            else if(disabled){
+                event.preventDefault();
+                alert('你没有权限');
+            }
+        }
+    }
+});
+
+if(!!cacheData.get('user_role')){
+    var userRole=JSON.parse(cacheData.get('user_role'));
+    vm.list.forEach(function(el,index){
+        el.disabled = userRole[index].disabled;
+    });
+}
+
+</script>
+</body>
+</html>

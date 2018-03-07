@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<title>龙腾大屏</title>
+<link rel="stylesheet" href="www/css/bigscreen.min.css">
+</head>
+
+
+<div class="bigscreen">
+    <a href="bigscreen1.html" class="gooooo prev">
+        <i class="iconfont icon-left"></i>
+    </a>
+    <div class="center">
+        <header>
+            <p>龙腾数据展示系统</p>
+        </header>
+    </div>
+    <div class="fullsrceen">
+        <ul class="total-count">
+            <li>
+                APP下载总量：
+                <strong>{{appNumber}}</strong>
+            </li>
+            <li>
+                APP累计注册用户数：
+                <strong>{{personNumber}}</strong>
+            </li>
+            <li>
+                APP订单今年订单总量：
+                <strong>{{orderNumber}}</strong>
+            </li>
+        </ul>
+        <!--<div class="appshare">
+            <div class="title">
+                <em>■</em> APP用户分享
+            </div>
+            <div class="marquee">
+                <marquee behavior="scroll" contenteditable="true" onmouseover="this.stop();" onmouseout="this.start();">
+                    水电费是的发送到了健康水淀粉结束了大房间是漏掉会计分录可视对讲菲利克斯到家了开发斯蒂芬
+                    sdfads的发送到了健康水淀粉结束了大房间是漏掉会计分录可视对讲菲利克斯到家了开发斯蒂芬
+                </marquee>
+            </div>
+        </div>-->
+
+        <div class="chart-line">
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> 热门休息室
+                </header>
+                <div class="charts">
+                    <div id="wordCloud1" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> 热门餐厅
+                </header>
+                <div class="charts">
+                    <div id="wordCloud2" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> APP新增注册用户数
+                </header>
+                <div class="charts">
+                    <div id="appAdd" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> APP活跃用户 
+                </header>
+                <div class="charts">
+                    <div id="appActive" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-line">
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> APP礼宾车下单量
+                </header>
+                <div class="charts">
+                    <div id="carbillData" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> APP要客通下单量
+                </header>
+                <div class="charts">
+                    <div id="chennelbill" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> APP闪付下单量  
+                </header>
+                <div class="charts">
+                    <div id="flash" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> APP快速安检通道下单量
+                </header>
+                <div class="charts">
+                    <div id="cip" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-line">
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> 电商饭票下单量
+                </header>
+                <div class="charts">
+                    <div id="ecom2gMealTicketData" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> APP购买会籍下单量
+                </header>
+                <div class="charts">
+                    <div id="membershipData" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> APP点数充值下单量
+                </header>
+                <div class="charts">
+                    <div id="loungeData" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+            <div class="chart4">
+                <header class="title">
+                    <em>■</em> APP单次休息室下单量
+                </header>
+                <div class="charts">
+                    <div id="lounge_service" style="width:468px;height:198px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="www/lib/jquery.min.js"></script>
+<script src="www/lib/vue.min.js"></script>
+<script src="www/lib/echarts.min.js"></script>
+<script src="www/lib/echarts-wordcloud.min.js"></script>
+<script src="src/js/common.js"></script>
+<script src="src/js/bigscreen2.js"></script>
+</body>
+</html>

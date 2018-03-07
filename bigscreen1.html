@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<title>丽江大屏</title>
+<link rel="stylesheet" href="www/css/bigscreen.min.css">
+</head>
+
+
+<div class="bigscreen">
+    <div class="menu">
+        <div class="menu-item">
+            <a href="bigscreen1.html">
+                <i class="iconfont icon-shujudaping"></i></br>
+                数据大屏
+            </a>
+            <a href="portrait.html">
+                <i class="iconfont icon-yonghuhuaxiang"></i></br>
+                用户画像
+            </a>
+            <a v-on:click="logout()" href="#">
+                <i class="iconfont icon-tuichu"></i></br>
+                退出
+            </a>
+        </div>
+    </div>
+    <!-- <a href="bigscreen0.html" class="gooooo prev">
+        <i class="iconfont icon-left"></i>
+    </a>
+    <a href="bigscreen2.html" class="gooooo next">
+        <i class="iconfont icon-right"></i>
+    </a> -->
+    <div class="center">
+        <header>
+            <p>丽江数据展示系统</p>
+        </header>
+    </div>
+    <div class="middle">
+        <ul class="count">
+            <li>
+                <div>
+                    <p class="col-tit">用户总数</p>
+                    <p class="col-num"><span>1000</span> 次</p>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <p class="col-tit">两舱服务使用次数</p>
+                    <p class="col-num"><span>2000</span> 次</p>
+                </div>
+            </li>
+            <li>
+                <div>
+                <p class="col-tit">要客服务使用次数</p>
+                <p class="col-num"><span>3000</span> 次</p>
+                </div>
+            </li>
+        </ul>
+        <div class="chart-map">
+            <ul>
+                <li class="active">目的地旅客分布</li>
+                <li>出发地旅客分布</li>
+                <li>旅客分布</li>
+            </ul>
+            <div class="map" id="chinaMap"></div>
+        </div>
+    </div>
+    <!-- <div class="middle-left middle-chart">
+        <div>{{time}}</div>
+       <div class="display-number">
+            总服务人次：
+            <strong>{{personNumber}}</strong>
+        </div>
+        <div class="title">
+            <em>■</em> 开卡数
+        </div>
+        <div class="charts">
+            <div id="cardChart" style="width:438px;height:112px;"></div>
+        </div>
+        <div class="charts">
+            <div class="ltitle">礼宾车使用量</div>
+            <div id="carbill" style="width:438px;height:100px;"></div>
+        </div>
+        <div class="charts">
+            <div class="ltitle">要客通使用量</div>
+            <div id="channelbill" style="width:438px;height:100px;"></div>
+        </div>
+        <div class="charts">
+            <div class="ltitle">餐厅使用量</div>
+            <div id="restaurant" style="width:438px;height:100px;"></div>
+        </div>
+    </div>
+    <div class="middle-right middle-chart">
+       <div class="display-number">
+            会员数：
+            <strong>{{vipNumber}}</strong>
+        </div>
+        <div class="title">
+            <em>■</em> 休息室使用人次
+        </div>
+        <div class="charts">
+            <div id="consumeChart" style="width:438px;height:248px;"></div>
+        </div>
+        <div class="charts">
+            <div class="ltitle">龙腾体验厅使用人次总和</div>
+            <div id="specialConsumeChart" style="width:438px;height:100px;"></div>
+        </div>
+        <div class="charts">
+            <div class="ltitle">龙腾体验厅机场使用人次总和</div>
+            <div id="specialAirPortChart" style="width:438px;height:100px;"></div>
+        </div>
+    </div> -->
+    <div class="left">
+        <header class="title">
+            <p>
+                <!-- <em>■</em>  -->
+                丽江机场热门休息室/贵宾厅
+            </p>
+            <p class="english">Lijiang Airport popular lounge</p>
+        </header>
+        <div id="leftFade" class="fade-wrap">
+            <!-- <ul class="nav nav-left">
+                <li class="active">
+                    中东<br>
+                    Middle<br>
+                    East
+                </li>
+                <li>
+                    亚洲<br>
+                    Asia<br>
+                    &nbsp;
+                </li>
+                <li>
+                    欧洲<br>
+                    Europe<br>
+                    &nbsp;
+                </li>
+                <li>
+                    南美洲<br>
+                    South<br>
+                    America
+                </li>
+                <li>
+                    非洲<br>
+                    Afica<br>
+                    &nbsp;
+                </li>
+                <li>
+                    大洋洲<br>
+                    Oceania<br>
+                    &nbsp;
+                </li>
+                <li>
+                    北美洲<br>
+                    North<br>
+                    America
+                </li>
+            </ul> -->
+            <ul class="content content-left">
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>休息室</th>
+                                <th>使用人次</th>
+                                <th>热度</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[0].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <!-- <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[1].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[2].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[3].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[4].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[5].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>休息室/lounge</th>
+                                <th>人数</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in rest[6].data">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.name_cn}}<br>
+                                    {{el.name_en}}
+                                </td>
+                                <td>
+                                    {{el.value}}
+                                </td>
+                                <td v-bind:style="el.style">
+                                    <i class="iconfont icon-jiantou {{el.type}}"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="right">
+        <header class="title">
+            <div class="float-left">
+                <p>
+                    <!-- <em>■</em>  -->
+                    来源渠道
+                </p>
+                <p class="english">Source channel</p>
+            </div>
+        </header>
+        <div style="clear:both"></div>
+        <div id="rightFade" class="fade-wrap">
+            <ul class="float-right" style="position:absolute;top:0.8em;right:.8em">
+                <li class="active">航司</li>
+                <li>第三方</li>
+                <li>协议单位</li>
+            </ul>
+            <!-- <ul class="nav nav-right">
+                <li class="active">
+                    境内企业机构
+                </li>
+                <li>
+                    境外企业机构
+                </li>
+                <li>
+                    OTA
+                </li>
+            </ul> -->
+            <ul class="content content-right">
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>航空公司</th>
+                                <th>单日累计</th>
+                                <th>当月累计</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in agency.domesticInstitutions">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.agreement_cardname}}<br>
+                                </td>
+                                <td>
+                                    {{el.dayNum}}
+                                </td>
+                                <td>
+                                    {{el.monthNum}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>航空公司</th>
+                                <th>单日累计</th>
+                                <th>当月累计</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in agency.overseasInstitutions">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.agreement_cardname}}<br>
+                                </td>
+                                <td>
+                                    {{el.dayNum}}
+                                </td>
+                                <td>
+                                    {{el.monthNum}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <table class="pure-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>航空公司</th>
+                                <th>单日累计</th>
+                                <th>当月累计</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="el in agency.OTA">
+                                <td>
+                                    <span>{{$index+1}}</span>
+                                </td>
+                                <td>
+                                    {{el.agreement_cardname}}<br>
+                                </td>
+                                <td>
+                                    {{el.dayNum}}
+                                </td>
+                                <td>
+                                    {{el.monthNum}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- <div class="bottom-table">
+        <header class="title">
+            <em>■</em> 龙腾体验厅使用人次
+        </header>
+        <ul>
+            <li>休息室名称</li>
+            <li v-for="el in specialConsumeDate">{{el.name}}</li>
+        </ul>
+        <ul>
+            <li>当月使用</li>
+            <li v-for="el in specialConsumeDate">{{el.month_num}}</li>
+        </ul>
+        <ul>
+            <li>当日使用</li>
+            <li v-for="el in specialConsumeDate">{{el.day_num}}</li>
+        </ul>
+    </div>
+    <div class="bottom-table" style="top:940px;">
+        <header class="title">
+            <em>■</em> 龙腾体验厅机场使用人次
+        </header>
+        <ul>
+            <li>休息室名称</li>
+            <li v-for="el in specialAirPortDate">{{el.trafficsite_name}}</li>
+        </ul>
+        <ul>
+            <li>当月使用</li>
+            <li v-for="el in specialAirPortDate">{{el.month_num}}</li>
+        </ul>
+        <ul>
+            <li>当日使用</li>
+            <li v-for="el in specialAirPortDate">{{el.day_num}}</li>
+        </ul>
+    </div> -->
+</div>
+
+
+
+
+<script src="www/lib/jquery.min.js"></script>
+<script src="www/lib/vue.min.js"></script>
+<script src="www/lib/echarts.min.js"></script>
+<script src="src/js/common.js"></script>
+<script src="src/js/bigscreen1.js"></script>
+</body>
+</html>

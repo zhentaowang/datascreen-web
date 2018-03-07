@@ -1,0 +1,8 @@
+node_modules/
+*.DS_Store
+npm-debug.log
+.idea/*
+www/js
+www/css/*.css
+www/css/*.min.css
+.vscode/

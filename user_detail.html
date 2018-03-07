@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+    <title>龙腾用户详情</title>
+    <link rel="stylesheet" href="www/css/portrait.min.css">
+</head>
+
+<body>
+    <div class="menu">
+        <div class="menu-item">
+            <a href="bigscreen1.html">
+                <i class="iconfont icon-shujudaping"></i></br>
+                数据大屏
+            </a>
+            <a href="portrait.html">
+                <i class="iconfont icon-yonghuhuaxiang"></i></br>
+                用户画像
+            </a>
+            <a href="ab_test.html">
+                <i class="iconfont icon-ABceshi"></i></br>
+                A/B测试
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="user-detail">
+            <div class="detail-title">
+                基本信息
+            </div>
+            <div class="detail-content">
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>姓名：</label> {{user.name|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>常驻地城市地区：</label> {{user.mobile_phone_location_area_name|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>性别：</label> {{user.sex_name|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>用户籍贯城市等级：</label> {{user.id_city_level_name|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>邮箱类型：</label> {{user.email_type_name|kong}}
+                    </div>
+
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>手机号码：</label> --
+                    </div>
+                    <div class="grid-line">
+                        <label>常驻地省份：</label> {{user.mobile_phone_location_province_name|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>身份证号码：</label> --
+                    </div>
+                    <div class="grid-line">
+                        <label>户籍贯城市地区：</label> {{user.id_location_area_name|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>邮寄地址：</label> --
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>常驻地城市等级：</label> {{user.mobile_phone_city_level_name|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>手机号码类型：</label> --
+                    </div>
+                    <div class="grid-line">
+                        <label>年龄段：</label> {{user.generation_name|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>电子邮箱：</label> {{user.email|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>居住地类型：</label> --
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-detail">
+            <div class="detail-title">
+                持卡特征
+            </div>
+            <div class="detail-content">
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>持卡数：</label> {{user.dragoncard_code_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>首次开卡时间：</label> {{user.dragoncard_first_activetime|kong}}
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>是否全无效：</label> {{user.dragoncard_status_are_all_invalid_name|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>来源渠道id总数：</label> {{user.dragoncard_origin_id_count|kong}}
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>所属银行个数：</label> {{user.dragoncard_bank_name_count|kong}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-detail">
+            <div class="detail-title">
+                APP特性
+            </div>
+            <div class="detail-content">
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>注册ID数：</label> {{user.app_user_id_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>注册时间：</label> {{user.app_cdate|kong}}
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>上次登录时间：</label> {{user.app_last_boot_time|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>是否绑定微信号：</label> {{user.app_is_bind_wechat_name|kong}}
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>绑定龙腾卡数量：</label> {{user.app_bind_dragoncard_code_count|kong}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-detail">
+            <div class="detail-title">
+                休息室使用
+            </div>
+            <div class="detail-content">
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>累计使用次数：</label> {{user.lounge_consume_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>最近消费时间：</label> {{user.lastest_date_consume|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>是否有过有过携伴使用休息室：</label> {{user.with_a_partner_value|kong}}
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>是否有过异地使用休息室：</label> {{user.different_places_lounge_use_value|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>是否有一线城市消费：</label> {{user.level1_city_lounge_use_value|kong}}
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>是否有二线城市消费：</label> {{user.level2_city_lounge_use_value|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>是否有三线城市消费：</label> {{user.level3_city_lounge_use_value|kong}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-detail">
+            <div class="detail-title">
+                用户权益
+            </div>
+            <div class="detail-content">
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>礼宾车-代金券：</label> {{user.car_coupon_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>礼宾车-权益：</label> {{user.car_equity_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>要客通-代金券：</label> {{user.vvip_coupon_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>要客通-权益：</label> {{user.vvip_equity_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>要客通礼宾车组合-代金券：</label> {{user.vvip_car_coupon_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>要客通礼宾车组合-权益：</label> {{user.vvip_car_equity_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>饭票张数：</label> {{user.meal_count|kong}}
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>零售店-代金券：</label> {{user.cashvoucher_coupon_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>零售店-权益：</label> {{user.cashvoucher_equity_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>快速安检通道（CIP)-代金券：</label> {{user.cip_coupon_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>快速安检通道（CIP)-权益：</label> {{user.cip_equity_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>休息室服务-代金券：</label> {{user.lounge_coupon_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>休息室服务-权益：</label> {{user.lounge_equity_count|kong}}
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>礼宾服务-代金券：</label> {{user.guest_coupon_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>礼宾服务-权益：</label> {{user.guest_equity_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>代客泊车-代金券：</label> {{user.parking_coupon_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>代客泊车-权益：</label> {{user.parking_equity_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>现金：</label> {{user.cash_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>龙腾卡剩余点数：</label> {{user.dragoncard_point_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>分享次数：</label> {{user.share_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>点赞次数：</label> {{user.reply_count|kong}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-detail">
+            <div class="detail-title">
+                电商消费特征
+            </div>
+            <div class="detail-content">
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>礼宾车-累计消费次数：</label> {{user.carbill_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>礼宾车-最近消费时间：</label> {{user.carbill_last_order_time|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>要客通-累计消费次数：</label> {{user.channelbill_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>要客通-最近消费时间：</label> {{user.channelbill_last_order_time|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>代泊停车-累计消费次数：</label> {{user.parking_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>代泊停车-最近消费时间：</label> {{user.parking_last_order_time|kong}}
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>CIP-累计消费次数：</label> {{user.cip_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>CIP-最近消费时间：</label> {{user.cip_last_order_time|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>餐厅-累计消费次数：</label> {{user.restaurant_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>餐厅-最近消费时间：</label> {{user.restaurant_last_order_time|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>休息室-累计消费次数：</label> {{user.lounge_service_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>休息室-最近消费时间：</label> {{user.lounge_service_last_order_time|kong}}
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="grid-line">
+                        <label>购买会籍-累计消费次数：</label> {{user.membership_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>购买会籍-最近消费时间：</label> {{user.membership_last_order_time|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>点数充值-累计消费次数：</label> {{user.lounge_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>点数充值-最近消费时间：</label> {{user.lounge_last_order_time|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>转赠-累计消费次数：</label> {{user.give_point_count|kong}}
+                    </div>
+                    <div class="grid-line">
+                        <label>转赠-最近消费时间：</label> {{user.give_point_last_order_time|kong}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="www/lib/jquery.min.js"></script>
+    <script src="www/lib/vue.min.js"></script>
+    <script src="src/js/common.js"></script>
+    <script src="src/js/detail.js"></script>
+</body>
+
+</html>

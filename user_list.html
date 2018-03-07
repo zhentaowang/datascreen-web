@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<title>龙腾用户详情</title>
+<link rel="stylesheet" href="www/css/portrait.min.css">
+</head>
+<body>
+<div class="menu">
+    <div class="menu-item">
+        <a href="bigscreen1.html">
+            <i class="iconfont icon-shujudaping"></i></br>
+            数据大屏
+        </a>
+        <a href="portrait.html">
+            <i class="iconfont icon-yonghuhuaxiang"></i></br>
+            用户画像
+        </a>
+        <a href="ab_test.html">
+            <i class="iconfont icon-ABceshi"></i></br>
+            A/B测试
+        </a>
+    </div>
+</div>
+<div class="container" style="padding:26px 0;box-sizing:border-box">
+    <div class="userlist">
+        <div class="title">
+            <em>■</em>
+            用户列表
+        </div>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年龄段</th>
+                        <th>常驻地城市</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="el in userList">
+                        <td>
+                            <a href="user_detail.html?id={{el.user_id}}" target="_blank">{{el.name}}</a>
+                        </td>
+                        <td>{{el.sex_name}}</td>
+                        <td>{{el.generation_name}}</td>
+                        <td>{{el.mobile_phone_location_city_name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="www/lib/jquery.min.js"></script>
+<script src="www/lib/vue.min.js"></script>
+<script src="src/js/common.js"></script>
+<script src="src/js/list.js"></script>
+</body>
+</html>

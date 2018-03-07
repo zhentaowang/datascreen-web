@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<title>龙腾大屏</title>
+<link rel="stylesheet" href="www/css/bigscreen.min.css">
+</head>
+<style>
+    p{display:inline;}
+    #left-data{text-align: left;}
+    #right-data{text-align: right;}
+    .text-child{
+        display: inline-block;
+        color: #fff;
+        width: 29%;
+        font-size: 30px;
+    }
+    .bigscreen .center>header{
+        display: inline-block;
+        width: 31%;
+        background: url(www/img/title.png) no-repeat no-repeat;
+        background-size: 100% 100%;
+        line-height: 82px;
+    }
+    .bigscreen .center{
+        text-align: center;
+    }
+
+</style>
+<div class="bigscreen">
+    <a href="/" class="gooooo prev">
+        <i class="iconfont icon-left"></i>
+    </a>
+    <a href="bigscreen1.html" class="gooooo next">
+        <i class="iconfont icon-right"></i>
+    </a>
+    <div class="center" id="parent">
+        <div class="text-child">
+            总服务人次：<strong>{{personNumber}}</strong>
+        </div>
+        <header>
+            <p id="center-data">龙腾数据展示系统</p>
+        </header>
+        <div class="text-child">
+            会员数：<strong>{{vipNumber}}</strong>
+        </div>
+    </div>
+    <div class="fullsrceen" id="container" style="height: 100%;width: 100%;">
+
+    </div>
+</div>
+
+<script src="www/lib/jquery.min.js"></script>
+<script src="www/lib/vue.min.js"></script>
+<script src="www/lib/echarts.min.js"></script>
+<script src="www/lib/bmap.min.js"></script>
+<script src="www/lib/api.js"></script>
+<script src="www/lib/world.js"></script>
+<script src="src/js/common.js"></script>
+<script src="src/js/bigscreen0.js"></script>
+
+</body>
+</html>
+
+
+

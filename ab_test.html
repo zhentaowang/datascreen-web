@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+    <title>A/B测试</title>
+    <link rel="stylesheet" href="www/css/ab_test.min.css">
+</head>
+<body>
+<div class="menu">
+    <div class="menu-item">
+        <a href="bigscreen1.html">
+            <i class="iconfont icon-shujudaping"></i></br>
+            数据大屏
+        </a>
+        <a href="portrait.html">
+            <i class="iconfont icon-yonghuhuaxiang"></i></br>
+            用户画像
+        </a>
+        <a href="ab_test.html">
+            <i class="iconfont icon-ABceshi"></i></br>
+            A/B测试
+        </a>
+        <a v-on:click="logout()" href="#">
+            <i class="iconfont icon-tuichu"></i></br>
+            退出
+        </a>
+    </div>
+</div>
+<div class="container">
+    <div class="portrait-title">
+        <header>
+            <p>A/B测试</p>
+        </header>
+    </div>
+
+    <ul class="title">
+        <li class="choose">
+            <select  v-model="selected" v-on:change="change(selected)">
+                <option style="height:36px" v-for="el in activityList" v-bind:value="el.abtest_id">{{el.abtest_name}}</option>
+            </select><span>指标</span><p></p>
+        </li>
+        <li v-for="data in activityDetail"><span style="margin-left:16px;">{{data.name}}</span></li>
+        <li class="no-border"><span style="margin-left:16px;">变化率</span></li>
+    </ul> 
+    <div class="box">
+        <!--<select style="height:36px" class="activity-list" v-model="selected" v-on:change="change(selected)">
+            <option style="height:36px" v-for="el in activityList" v-bind:value="el.abtest_id">{{el.abtest_name}}</option>
+        </select>-->
+            <ul class="index">
+
+            </ul>
+            <ul v-for="el in activityDetail">
+                <li>{{el.average_consume_count}}</li>
+                <li>{{el.foreign_airport_lounge_use_ratio}}</li>
+                <li>{{el.high_speed_rail_lounge_use_ratio}}</li>
+                <li>{{el.with_a_partner_ratio}}</li>
+                <li>{{el.app_user_ratio}}</li>
+            </ul>
+            <ul class="rate"> 
+                <li v-bind:class="{'active':parseInt(rates.average_consume_count)>=20?true:false}">{{rates.average_consume_count}}</li>
+                <li v-bind:class="{'active':parseInt(rates.foreign_airport_lounge_use_ratio}>=20?true:false">{{rates.foreign_airport_lounge_use_ratio}}</li>
+                <li v-bind:class="{'active':parseInt(rates.high_speed_rail_lounge_use_ratio)>=20?true:false}">{{rates.high_speed_rail_lounge_use_ratio}}</li>
+                <li v-bind:class="{'active':parseInt(rates.with_a_partner_ratio)>=20?true:false}">{{rates.with_a_partner_ratio}}</li>
+                <li v-bind:class="{'active':parseInt(rates.app_user_ratio)>=20?true:false}">{{rates.app_user_ratio}}</li>
+            </ul>
+    </div>
+</div>
+<script src="www/lib/jquery.min.js"></script>
+<script src="www/lib/vue.min.js"></script>
+<script src="src/js/common.js"></script>
+<script src="src/js/ab_test.js"></script>
+</body>
+</html>
