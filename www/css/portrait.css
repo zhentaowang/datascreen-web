@@ -1,0 +1,415 @@
+@import "//at.alicdn.com/t/font_1xukwn7xr43d6lxr.css";
+.blue {
+  color: #00a8ff;
+}
+.w15 {
+  width: 15%;
+}
+.w17 {
+  width: 17%;
+}
+.w2 {
+  width: 20%;
+}
+.w25 {
+  width: 25%;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body {
+  font-family: Arial, Helvetica, 'Microsoft YaHei', sans-serif, '华文黑体';
+  background: url(../img/ljg_bg.png);
+}
+.container {
+  width: 100%;
+}
+.title {
+  color: #0073ff;
+  font-size: 14px;
+  background-color: #045ea3;
+  padding: 1em;
+}
+.title > em {
+  font-style: normal;
+  font-size: 12px;
+}
+.portrait-title {
+  width: 100%;
+  height: 82px;
+  background: url(../img/ljg_tit_bg.png);
+  margin-bottom: 20px;
+}
+.portrait-title > header {
+  position: relative;
+  text-align: center;
+  width: 600px;
+  height: 82px;
+  margin: 0 auto;
+  font-size: 40px;
+  background: url(../img/ljg_txt_bg.png) no-repeat bottom;
+  margin-bottom: 15px;
+  z-index: 999;
+}
+.portrait-title > header > p {
+  background: -webkit-linear-gradient(top, #def2fa, #8be1f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-top: 10px;
+}
+.tags-tabs {
+  background: rgba(19, 23, 66, 0.9);
+  border: 1px solid #045ea3;
+  color: #0073ff;
+  font-size: 14px;
+  position: relative;
+  margin-bottom: 35px;
+  width: 1280px;
+  margin: 0 auto;
+}
+.tags-tabs .toggle {
+  width: 96px;
+  height: 15px;
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  margin-left: -48px;
+  background-color: #0a274d;
+  text-align: center;
+  border: 1px solid #045ea3;
+  line-height: 12px;
+  border-top: none;
+  border-bottom-left-radius: 2px;
+  cursor: pointer;
+}
+.tags-tabs .toggle.active > .arrow {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.tags-tabs .toggle .arrow > i {
+  font-size: 12px;
+}
+.tags-tabs .tabs-nav {
+  border-bottom: 1px solid #045ea3;
+}
+.tags-tabs .tabs-nav li {
+  display: inline-block;
+  padding: 5px 30px;
+  cursor: pointer;
+  color: #0073ff;
+}
+.tags-tabs .tabs-nav li.active {
+  border-bottom: 1px solid #00dfff;
+  color: #00dfff;
+}
+.tags-tabs .tabs-nav1 {
+  /*border-bottom: 1px solid @border-color;*/
+  padding-top: 3px;
+  padding-left: 3px;
+  background-color: #094e8c;
+  color: #00a8ff;
+}
+.tags-tabs .tabs-nav1 li {
+  display: inline-block;
+  padding: 5px 30px;
+  cursor: pointer;
+  height: 100%;
+}
+.tags-tabs .tabs-nav1 li.active {
+  background-color: #094e8c;
+  color: white;
+}
+.tags-tabs .tabs-content {
+  color: white;
+  padding: 25px;
+}
+.tags-tabs .tabs-content .item {
+  display: none;
+}
+.tags-tabs .tabs-content .item:first-child {
+  display: block;
+}
+.tags-tabs .tabs-content .item1 {
+  display: none;
+  padding: 25px;
+}
+.tags-tabs .tabs-content.toggled .item1 .filter:nth-child(n+3) {
+  display: block;
+}
+.tags-tabs .tabs-content.toggled .item .filter:nth-child(n+3) {
+  display: block;
+}
+.filter {
+  margin-bottom: 10px;
+  min-height: 30px;
+}
+.filter:nth-child(n+3) {
+  display: none;
+}
+.filter > label {
+  color: rgba(255, 255, 255, 0.6);
+  width: 170px;
+  display: block;
+  text-align: right;
+  padding: 2px 0;
+  float: left;
+}
+.filter .labels {
+  margin-left: 155px;
+}
+.filter .labels > a {
+  display: inline-block;
+  padding: 2px 1em;
+  margin: 0 0 10px 1em;
+  cursor: pointer;
+}
+.filter .labels > a.active {
+  background-color: #0073ff;
+}
+.filter .labels > select {
+  padding: 2px .5em;
+  margin: 0 0 0 20px;
+  text-align: center;
+  font-family: '微软雅黑';
+}
+.filter .labels > div > select {
+  padding: 2px .5em;
+  margin: 0 0 0 20px;
+  text-align: center;
+  font-family: '微软雅黑';
+}
+.filter .labels .button {
+  background: none;
+  background-color: #0073ff;
+  color: white;
+  padding: 5px 1em;
+  border-radius: 3px;
+}
+.filter-choose {
+  color: white;
+  padding: 0 25px;
+  padding-bottom: 3em;
+}
+.filter-choose .line {
+  height: 1px;
+  background-color: #2a4569;
+  margin-bottom: 1em;
+}
+.filter-choose > label {
+  color: rgba(255, 255, 255, 0.6);
+  width: 155px;
+  display: block;
+  text-align: right;
+  padding: 2px 0;
+  float: left;
+}
+.filter-choose .chooselist {
+  margin-left: 155px;
+}
+.filter-choose .chooselist > a {
+  display: inline-block;
+  padding: 2px 1em;
+  margin: 0 0 10px 1em;
+  cursor: pointer;
+  background-color: #0073ff;
+}
+.chart-tab {
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.chart-tab .chart {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.chart-tab .chart .content {
+  border: 1px solid #045ea3;
+  background-color: #0a274d;
+  height: 265px;
+}
+.chart-tab .chart:nth-child(1) {
+  padding-right: 10px;
+}
+.chart-tab .chart:nth-child(2) {
+  padding: 0 10px;
+}
+.chart-tab .chart:nth-child(3) {
+  padding-left: 10px;
+}
+.user-chart {
+  margin-bottom: 20px;
+}
+.user-chart .chart-content {
+  background-color: #0a274d;
+  border: 1px solid #045ea3;
+}
+.userlist {
+  margin-bottom: 20px;
+}
+.userlist > .content {
+  border: 1px solid #045ea3;
+  background-color: #0a274d;
+  padding: 10px 45px;
+  color: white;
+}
+.userlist > .content > table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.userlist > .content > table thead tr th {
+  padding: 1em 5px;
+  font-weight: normal;
+  text-align: left;
+  font-size: 18px;
+}
+.userlist > .content > table tbody tr {
+  border-top: 1px solid white;
+}
+.userlist > .content > table tbody tr td {
+  padding: 1em 5px;
+  font-size: 14px;
+}
+.userlist > .content > table tbody tr td a {
+  color: #0073ff;
+}
+.user-detail {
+  border: 1px solid #045ea3;
+  padding: 0 40px;
+  color: white;
+  background-color: #0a274d;
+  margin-top: 40px;
+}
+.user-detail .detail-title {
+  font-size: 18px;
+  color: #0073ff;
+  padding: .5em 1em;
+  border-bottom: 1px solid #2a4569;
+  position: relative;
+}
+.user-detail .detail-title:before {
+  content: '';
+  width: 3px;
+  height: 18px;
+  display: block;
+  position: absolute;
+  background-color: #0073ff;
+  left: 8px;
+  top: 12px;
+}
+.user-detail .detail-content {
+  padding: 1em 0;
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.user-detail .detail-content .grid {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.user-detail .detail-content .grid .grid-line {
+  padding: .5em;
+}
+.user-detail .detail-content .grid .grid-line > label {
+  color: #c2c2c2;
+  width: 170px;
+  display: inline-block;
+}
+.portrait-all {
+  width: 1280px;
+  margin: 20px auto;
+  height: 550px;
+  position: relative;
+  background: url(../img/portrait_bg.png);
+}
+.portrait-all > .chart4 {
+  width: 338px;
+  position: absolute;
+}
+.portrait-all > .chart4 > .content {
+  height: 205px;
+  background-color: #0a274d;
+  border: 1px solid #045ea3;
+}
+.portrait-all > .chart4.chart4-1 {
+  left: 0;
+  top: 0;
+}
+.portrait-all > .chart4.chart4-2 {
+  right: 0;
+  top: 0;
+}
+.portrait-all > .chart4.chart4-3 {
+  left: 0;
+  bottom: 0;
+}
+.portrait-all > .chart4.chart4-4 {
+  right: 0;
+  bottom: 0;
+}
+.portrait-all .chart-map {
+  position: absolute;
+  top: 0;
+  left: 338px;
+  width: 605px;
+}
+.portrait-all .chart-map > .header {
+  display: block;
+  margin: 0 20px;
+  background-color: #0a274d;
+  border: 1px solid #045ea3;
+  color: white;
+  text-align: center;
+  padding: 1em 0;
+  text-decoration: none;
+}
+.portrait-all .chart-map > .map {
+  height: 500px;
+  width: 605px;
+}
+.no-user {
+  text-align: center;
+  color: white;
+  border: 1px solid #045ea3;
+  background-color: #0a274d;
+  padding: .5em;
+  margin-bottom: 5em;
+}
+.menu {
+  width: 191px;
+  height: 580px;
+  background: url(../img/menu.png);
+  position: fixed;
+  top: 50%;
+  margin-top: -250px;
+  left: 0;
+  left: -156px;
+  -webkit-transition: .3s;
+  transition: .3s;
+  padding-top: 150px;
+  text-align: center;
+  z-index: 9999;
+}
+.menu .menu-item {
+  width: 156px;
+}
+.menu .menu-item > a {
+  display: block;
+  text-decoration: none;
+  color: #0073ff;
+  font-size: 18px;
+  margin-bottom: 35px;
+}
+.menu .menu-item > a > i {
+  font-size: 45px;
+}
+.menu:hover {
+  left: 0;
+}
