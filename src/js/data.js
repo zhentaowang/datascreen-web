@@ -1,6 +1,6 @@
 var data = {
     "user_tags":{
-        "id_city_level":[
+        "cityLevel":[
             {
                 "name":"未知",
                 "id":-1,
@@ -37,7 +37,7 @@ var data = {
                 "selected":false
             }
         ],
-        "mobile_phone_location_area":[
+        "cityRegion":[
             {
                 "name":"未知",
                 "id":-1,
@@ -89,7 +89,7 @@ var data = {
                 "selected":false
             }
         ],
-        "mobile_phone_location_province":[
+        "province":[
             {
                 "name":"北京市",
                 "id":257,
@@ -251,7 +251,7 @@ var data = {
                 "selected":false
             }
         ],
-        "has_name":[
+        "nameValidation":[
             {
                 "name":"姓名为空",
                 "id":0,
@@ -263,7 +263,7 @@ var data = {
                 "selected":false
             }
         ],
-        "sex_type":[
+        "sex":[
             {
                 "name":"男",
                 "id":1,
@@ -280,7 +280,7 @@ var data = {
                 "selected":false
             }
         ],
-        "generation":[
+        "age":[
             {
                 "name":"未知用户",
                 "id":-1,
@@ -309,7 +309,7 @@ var data = {
         ]
     },
     "user_dragoncard_tags":{
-        "client_type":[
+        "institutionType":[
             {
                 "name":"银行",
                 "id":1,
@@ -361,7 +361,7 @@ var data = {
                 "selected":false
             }
         ],
-        "protocol_type":[
+        "protocolType":[
             {
                 "name":"冠名领导",
                 "id":1,
@@ -412,7 +412,7 @@ var data = {
                 "selected":false
             }
         ],
-        "product_type":[
+        "productType":[
             {
                 "name":"两舱休息室",
                 "id":1,
@@ -448,7 +448,7 @@ var data = {
                 "selected":false
             }
         ],
-        "lounge_consume_count":[
+        "accumulationUsage":[
             {
                 "name":"未知",
                 "id":1,
@@ -495,7 +495,7 @@ var data = {
                 "selected":false
             }
         ],
-        "lastest_consume_date_for_in_range_lounge":[
+        "recencyUsage":[
             {
                 "name":"当月",
                 "id":1,
@@ -518,7 +518,7 @@ var data = {
                 "selected":false
             }
         ],
-        "lastest_consume_date_for_not_in_range_lounge":[
+        "notRecencyUsage":[
             {
                 "name":"当月",
                 "id":1,
@@ -541,7 +541,7 @@ var data = {
                 "selected":false
             }
         ],
-        "service_num":[
+        "serviceCount":[
             {
                 "name":"未知",
                 "id":1,
@@ -616,7 +616,7 @@ var data = {
         //         "selected":false
         //     }
         // ],
-        "vvip_consume_count":[
+        "accumulationUsage":[
             {
                 "name":"未知",
                 "id":1,
@@ -663,7 +663,7 @@ var data = {
                 "selected":false
             }
         ],
-        "lastest_consume_date_for_in_range_vvip":[
+        "recencyUsage":[
             {
                 "name":"当月",
                 "id":1,
@@ -686,7 +686,7 @@ var data = {
                 "selected":false
             }
         ],
-        "lastest_consume_date_for_not_in_range_vvip":[
+        "notRecencyUsage":[
             {
                 "name":"当月",
                 "id":1,
@@ -709,7 +709,7 @@ var data = {
                 "selected":false
             }
         ],
-        "service_num":[
+        "serviceCount":[
             {
                 "name":"未知",
                 "id":1,
