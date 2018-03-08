@@ -1,4 +1,4 @@
-var server = 'http://192.168.1.102:8080/api/';
+var server = 'http://122.224.248.26:7777/';
 //var server = 'http://192.168.1.107:8888/longteng/api/';
 
 var FieldName = {

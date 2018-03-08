@@ -22,13 +22,13 @@ var vm = new Vue({
             if (!vm.flag) {
                 vm.flag = true;
                 $.ajax({
-                    url: server + 'login',
-                    type: 'POST',
+                    url: server + 'lj-datascreen/queryLogin',
+                    type: 'GET',
                     contentType: 'application/json; charset=utf-8',
-                    data: JSON.stringify({
+                    data: {
                         username: vm.username,
-                        password: vm.password
-                    }),
+                        userpwd: vm.password
+                    },
                     dataType: 'json',
                     success: function(data) {
                         if (data.status === 1) {
