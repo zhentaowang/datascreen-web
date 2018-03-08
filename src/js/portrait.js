@@ -81,10 +81,10 @@ var vm = new Vue({
                     var type = v.type;
                     if (!vm.req[type]) {
                         vm.req[type] = [];
-                        vm.req[type].push(v.id);
+                        vm.req[type].push(v.name);
                     }
                     else {
-                        vm.req[type].push(v.id);
+                        vm.req[type].push(v.name);
                     }
                     vm.req[type] = unique(vm.req[type]);
                 });
@@ -149,28 +149,91 @@ getOptions();
 //获取柱状图与地图的数据
 function getPortrait(data, type) {
     console.log(data)
+    var dataKey = {}
+    if($('.tabs-nav').find('.active')[0].innerHTML=='要客服务使用特征'){
+        if($('.tabs-nav1').find('.active1')[0].innerHTML=='候检区'){
+            dataKey.hjq_accumulationUsage = data.accumulationUsage
+            dataKey.hjq_recencyUsage = data.recencyUsage
+            dataKey.hjq_notRecencyUsage = data.notRecencyUsage
+            dataKey.hjq_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='会员区'){
+            dataKey.hyq_accumulationUsage = data.accumulationUsage
+            dataKey.hyq_notRecencyUsage = data.notRecencyUsage
+            dataKey.hyq_recencyUsage = data.notRecencyUsage
+            dataKey.hyq_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='工行厅'){
+            dataKey.ght_accumulationUsage = data.accumulationUsage
+            dataKey.ght_notRecencyUsage = data.notRecencyUsage
+            dataKey.ght_recencyUsage = data.recencyUsage
+            dataKey.ght_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='别院厅'){
+            dataKey.byt_accumulationUsage = data.accumulationUsage
+            dataKey.byt_notRecencyUsage = data.notRecencyUsage
+            dataKey.byt_recencyUsage = data.recencyUsage
+            dataKey.byt_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='建行厅'){
+            dataKey.jht_accumulationUsage = data.accumulationUsage
+            dataKey.jht_notRecencyUsage = data.notRecencyUsage
+            dataKey.jht_recencyUsage = data.recencyUsage
+            dataKey.jht_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='6号厅'){
+            dataKey.lht_accumulationUsage = data.accumulationUsage
+            dataKey.lht_notRecencyUsage = data.notRecencyUsage
+            dataKey.lht_recencyUsage = data.recencyUsage
+            dataKey.lht_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='龙腾厅'){
+            dataKey.jht_accumulationUsage = data.accumulationUsage
+            dataKey.ltt_recencyUsage = data.recencyUsage
+            dataKey.ltt_notRecencyUsage = data.notRecencyUsage
+            dataKey.ltt_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='农行厅'){
+            dataKey.nht_accumulationUsage = data.accumulationUsage
+            dataKey.nht_recencyUsage = data.recencyUsage
+            dataKey.nht_notRecencyUsage = data.notRecencyUsage
+            dataKey.nht_serviceCount = data.serviceCount
+        }
+    }else if($('.tabs-nav').find('.active')[0].innerHTML=='两舱服务使用特征'){
+        if($('.tabs-nav2').find('.active2')[0].innerHTML=='头等舱'){
+            dataKey.tdc_accumulationUsage = data.accumulationUsage
+            dataKey.tdc_recencyUsage = data.recencyUsage
+            dataKey.tdc_notRecencyUsage = data.notRecencyUsage
+            dataKey.tdc_serviceCount = data.serviceCount
+        }else if($('.tabs-nav2').find('.active2')[0].innerHTML=='招行厅'){
+            dataKey.zht_accumulationUsage = data.accumulationUsage
+            dataKey.zht_notRecencyUsage = data.notRecencyUsage
+            dataKey.zht_recencyUsage = data.notRecencyUsage
+            dataKey.zht_serviceCount = data.serviceCount
+        }else if($('.tabs-nav2').find('.active2')[0].innerHTML=='政要厅'){
+            dataKey.zyt_accumulationUsage = data.accumulationUsage
+            dataKey.zyt_notRecencyUsage = data.notRecencyUsage
+            dataKey.zyt_recencyUsage = data.recencyUsage
+            dataKey.zyt_serviceCount = data.serviceCount
+        }
+    }else{
+        dataKey = data
+    }
     var formData = User.appendAccessToken({
-        data: data,
-        portrait_type: !type ? null : [type]
+        data: [dataKey],
+        portrait_type: !type ? '' : type
     });
     $.ajax({
-        url: server + 'user/portrait',
+        url: 'http://122.224.248.26:7777/lj-userportrait/getUserPortraitResult',
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(formData),
         dataType: 'json',
         success: function(data) {
-            if (data.status === 0) {
-
+            console.log(data)
+            if (data.status === 200) {
                 if (!type) {
-                    drawChart1(data.user.dragoncard_bank);
-                    drawChart2(data.user.lounge_consume_count);
-                    drawChart3(data.user.sex_type);
-                    drawChart4(data.user.generation);
-                    drawChartMap(data.user.mobile_phone_location_province);
+                    drawChart1(data.data.user.institutionType);
+                    drawChart2(data.data.user.accumulationUsageTotal);
+                    drawChart3(data.data.user.sex);
+                    drawChart4(data.data.user.age);
+                    drawChartMap(data.data.user.province);
                 }
                 else {
-                    userChart(data.user.data);
+                    userChart(data.data.user.userPortrait);
                     vm.portraitShow = true;
                 }
             }
@@ -407,18 +470,84 @@ function getOptions() {
 }
 
 function getUserList(data, callback) {
+    var dataKey = {}
+    if($('.tabs-nav').find('.active')[0].innerHTML=='要客服务使用特征'){
+        if($('.tabs-nav1').find('.active1')[0].innerHTML=='候检区'){
+            dataKey.hjq_accumulationUsage = data.accumulationUsage
+            dataKey.hjq_recencyUsage = data.recencyUsage
+            dataKey.hjq_notRecencyUsage = data.notRecencyUsage
+            dataKey.hjq_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='会员区'){
+            dataKey.hyq_accumulationUsage = data.accumulationUsage
+            dataKey.hyq_notRecencyUsage = data.notRecencyUsage
+            dataKey.hyq_recencyUsage = data.notRecencyUsage
+            dataKey.hyq_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='工行厅'){
+            dataKey.ght_accumulationUsage = data.accumulationUsage
+            dataKey.ght_notRecencyUsage = data.notRecencyUsage
+            dataKey.ght_recencyUsage = data.recencyUsage
+            dataKey.ght_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='别院厅'){
+            dataKey.byt_accumulationUsage = data.accumulationUsage
+            dataKey.byt_notRecencyUsage = data.notRecencyUsage
+            dataKey.byt_recencyUsage = data.recencyUsage
+            dataKey.byt_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='建行厅'){
+            dataKey.jht_accumulationUsage = data.accumulationUsage
+            dataKey.jht_notRecencyUsage = data.notRecencyUsage
+            dataKey.jht_recencyUsage = data.recencyUsage
+            dataKey.jht_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='6号厅'){
+            dataKey.lht_accumulationUsage = data.accumulationUsage
+            dataKey.lht_notRecencyUsage = data.notRecencyUsage
+            dataKey.lht_recencyUsage = data.recencyUsage
+            dataKey.lht_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='龙腾厅'){
+            dataKey.jht_accumulationUsage = data.accumulationUsage
+            dataKey.ltt_recencyUsage = data.recencyUsage
+            dataKey.ltt_notRecencyUsage = data.notRecencyUsage
+            dataKey.ltt_serviceCount = data.serviceCount
+        }else if($('.tabs-nav1').find('.active1')[0].innerHTML=='农行厅'){
+            dataKey.nht_accumulationUsage = data.accumulationUsage
+            dataKey.nht_recencyUsage = data.recencyUsage
+            dataKey.nht_notRecencyUsage = data.notRecencyUsage
+            dataKey.nht_serviceCount = data.serviceCount
+        }
+    }else if($('.tabs-nav').find('.active')[0].innerHTML=='两舱服务使用特征'){
+        if($('.tabs-nav2').find('.active2')[0].innerHTML=='头等舱'){
+            dataKey.tdc_accumulationUsage = data.accumulationUsage
+            dataKey.tdc_recencyUsage = data.recencyUsage
+            dataKey.tdc_notRecencyUsage = data.notRecencyUsage
+            dataKey.tdc_serviceCount = data.serviceCount
+        }else if($('.tabs-nav2').find('.active2')[0].innerHTML=='招行厅'){
+            dataKey.zht_accumulationUsage = data.accumulationUsage
+            dataKey.zht_notRecencyUsage = data.notRecencyUsage
+            dataKey.zht_recencyUsage = data.notRecencyUsage
+            dataKey.zht_serviceCount = data.serviceCount
+        }else if($('.tabs-nav2').find('.active2')[0].innerHTML=='政要厅'){
+            dataKey.zyt_accumulationUsage = data.accumulationUsage
+            dataKey.zyt_notRecencyUsage = data.notRecencyUsage
+            dataKey.zyt_recencyUsage = data.recencyUsage
+            dataKey.zyt_serviceCount = data.serviceCount
+        }
+    }else{
+        dataKey = data
+    }
+
     var formData = User.appendAccessToken({
-        data: data
+        data: [dataKey],
+        portrait_type: ''
     })
     $.ajax({
-        url: server + 'user/portrait/userList',
+        url: 'http://122.224.248.26:7777/lj-userportrait/getUserPortraitResult',
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(formData),
         dataType: 'json',
         success: function(data) {
-            if (data.status === 0) {
-                vm.userCount = data.total;
+            console.log(data)
+            if (data.status === 200) {
+                vm.userCount = data.data.user.total;
                 cacheData.set('user_list', data.userList);
                 vm.portraitAllShow = true;
                 vm.noUserShow = false;
@@ -435,23 +564,35 @@ function getUserList(data, callback) {
     $('.tabs-nav li').click(function() {
         $(this).addClass('active').siblings().removeClass('active');
         var index = $('.tabs-nav li').index(this);
-        if (index == 5) {
+        if (index == 3) {
             $(".tabs-nav1").show();
+            $(".tabs-content").css("padding", "0px");
+            $(".tags-tabs .tabs-nav").css("borderBottom", "none")
+        }
+        else if(index == 2){
+            $(".tabs-nav2").show();
             $(".tabs-content").css("padding", "0px");
             $(".tags-tabs .tabs-nav").css("borderBottom", "none")
         }
         else {
             $(".tabs-nav1").hide();
+            $(".tabs-nav2").hide();
             $(".tabs-content").css("padding", "25px");
             $(".tags-tabs .tabs-nav").css("borderBottom", "1px solid #045ea3")
         }
         $('.tabs-content .item').eq(index).show().siblings().hide();
     });
     $('.tabs-nav1 li').click(function() {
-        $(this).addClass('active').siblings().removeClass('active');
+        $(this).addClass('active1').siblings().removeClass('active1');
         var index = $('.tabs-nav1 li').index(this);
         $('.tabs-content .item1').eq(index).show().siblings().hide();
         $(".tabs-nav1").show()
+    });
+    $('.tabs-nav2 li').click(function() {
+        $(this).addClass('active2').siblings().removeClass('active2');
+        var index = $('.tabs-nav2 li').index(this);
+        $('.tabs-content .item2').eq(index).show().siblings().hide();
+        $(".tabs-nav2").show()
     });
 })();
 
@@ -693,6 +834,7 @@ function drawChartMap(data) {
     var valueList = data.map(function(v) {
         return ~~(v.value)
     })
+    console.log(data)
 
     var myChart = echarts.init(document.getElementById('chinaMap'), 'macarons');
     var option = {

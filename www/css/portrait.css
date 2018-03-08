@@ -108,8 +108,7 @@ body {
 }
 .tags-tabs .tabs-nav1 {
   /*border-bottom: 1px solid @border-color;*/
-  padding-top: 3px;
-  padding-left: 3px;
+  margin-bottom: 3px;
   background-color: #094e8c;
   color: #00a8ff;
 }
@@ -119,7 +118,23 @@ body {
   cursor: pointer;
   height: 100%;
 }
-.tags-tabs .tabs-nav1 li.active {
+.tags-tabs .tabs-nav1 li.active1 {
+  background-color: #094e8c;
+  color: white;
+}
+.tags-tabs .tabs-nav2 {
+  /*border-bottom: 1px solid @border-color;*/
+  margin-bottom: 3px;
+  background-color: #094e8c;
+  color: #00a8ff;
+}
+.tags-tabs .tabs-nav2 li {
+  display: inline-block;
+  padding: 5px 30px;
+  cursor: pointer;
+  height: 100%;
+}
+.tags-tabs .tabs-nav2 li.active2 {
   background-color: #094e8c;
   color: white;
 }

@@ -4,22 +4,22 @@ var dataKey = {
             children:[
                 {
                     name:'旅客籍贯城市等级',
-                    type:'id_city_level'
+                    type:'cityLevel'
                 },{
                     name:'旅客籍贯城市地区',
-                    type:'mobile_phone_location_area'
+                    type:'cityRegion'
                 },{
                     name:'旅客籍贯城市',
-                    type:'mobile_phone_location_province'
+                    type:'province'
                 },{
                     name:'姓名信息有效性',
-                    type:'has_name'
+                    type:'nameValidation'
                 },{
                     name:'性别',
-                    type:'sex_type'
+                    type:'sex'
                 },{
                     name:'年龄段',
-                    type:'generation'
+                    type:'age'
                 }
             ],
             name:"基本信息"
@@ -27,13 +27,13 @@ var dataKey = {
             children:[
                 {
                     name:'客户类型',
-                    type:'client_type'
+                    type:'institutionType'
                 },{
                     name:'协议类型',
-                    type:'protocol_type'
+                    type:'protocolType'
                 },{
                     name:'产品类型',
-                    type:'product_type'
+                    type:'productType'
                 }
             ],
             name:"业务特征"
@@ -44,16 +44,16 @@ var dataKey = {
                     type:'lounge_type'
                 },{
                     name:'累计使用次数',
-                    type:'lounge_consume_count'
+                    type:'accumulationUsage'
                 },{
                     name:'近期使用情况',
-                    type:'lastest_consume_date_for_in_range_lounge'
+                    type:'recencyUsage'
                 },{
                     name:'近期未使用情况',
-                    type:'lastest_consume_date_for_not_in_range_lounge'
+                    type:'notRecencyUsage'
                 },{
                     name:'服务人次',
-                    type:'service_num'
+                    type:'serviceCount'
                 }
             ],
             name:"两舱服务使用特征"
@@ -65,16 +65,16 @@ var dataKey = {
                 // },
                 {
                     name:'累计使用次数',
-                    type:'vvip_consume_count'
+                    type:'accumulationUsage'
                 },{
                     name:'近期使用情况',
-                    type:'lastest_consume_date_for_in_range_vvip'
+                    type:'recencyUsage'
                 },{
                     name:'近期未使用情况',
-                    type:'lastest_consume_date_for_not_in_range_vvip'
+                    type:'notRecencyUsage'
                 },{
                     name:'服务人次',
-                    type:'service_num'
+                    type:'serviceCount'
                 }
             ],
             name:"要客服务使用特征"

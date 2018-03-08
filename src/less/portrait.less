@@ -114,8 +114,8 @@ body{
 
     .tabs-nav1{
         /*border-bottom: 1px solid @border-color;*/
-        padding-top: 3px;
-        padding-left: 3px;
+        margin-bottom: 3px;
+        // padding-left: 3px;
         background-color:#094e8c;
         color:#00a8ff;
 
@@ -124,8 +124,25 @@ body{
             padding: 5px 30px;
             cursor: pointer;
             height:100%;
+            &.active1{
+                background-color: #094e8c;
+                color: white;
+            }
+        }
+    }
+    .tabs-nav2{
+        /*border-bottom: 1px solid @border-color;*/
+        margin-bottom: 3px;
+        // padding-left: 3px;
+        background-color:#094e8c;
+        color:#00a8ff;
 
-            &.active{
+        li{
+            display: inline-block;
+            padding: 5px 30px;
+            cursor: pointer;
+            height:100%;
+            &.active2{
                 background-color: #094e8c;
                 color: white;
             }
