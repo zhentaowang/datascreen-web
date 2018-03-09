@@ -561,7 +561,7 @@ option = {
             coordinateSystem: 'geo',
             data: convertData(data),
             symbolSize: function (val) {
-                return val[2] / 10;
+                return val[2] / 50;
             },
             label: {
                 normal: {
@@ -587,7 +587,7 @@ option = {
                 return b.value - a.value;
             }).slice(0, 6)),
             symbolSize: function (val) {
-                return val[2] / 10;
+                return val[2] / 50;
             },
             showEffectOn: 'render',
             rippleEffect: {
