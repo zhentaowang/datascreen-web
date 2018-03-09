@@ -22,6 +22,7 @@ var vm = new Vue({
 // drawChartMap()
 startFade($('#leftFade'), true);
 startFade($('#rightFade'), true);
+startFade($('#chart-map'), true);
 getMinuteData((new Date()).getTime() - 3600 * 48 * 1000);
 
 //获取时间
@@ -55,7 +56,6 @@ getMinuteData((new Date()).getTime() - 3600 * 48 * 1000);
 
 //一分钟刷新一次
 function getMinuteData(time) {
-    console.log(time)
     var formData = User.appendAccessToken({
         date: time
     })
@@ -156,8 +156,8 @@ function getMinuteData(time) {
     });
 
     getPortrait('arr')//目的地旅客分布
-    // getPortrait('dep')//出发地旅客分布
-    // getPortrait('guest')//旅客分布
+    getPortrait('dep')//出发地旅客分布
+    getPortrait('guest')//旅客分布
 }
 
 //获取休息室
@@ -207,10 +207,11 @@ function getPortrait(type) {
 
 //轮播
 function startFade($selector, interval) {
-    var $channelList = $selector.children('.float-right').children('li')
+    var $channelList = $selector.children('.float-right').children('li');
+    var $distribute = $selector.children('.distribute').children('li');
     var $nav = $selector.children('.nav').children('li');
     var $content = $selector.children('.content').children('li');
-    var len = $content.length;
+    var len = 3;
     var sWidth = $selector.width;
     var index = 0;
     var picTimer;
@@ -222,6 +223,15 @@ function startFade($selector, interval) {
         }, function() {
             picTimer = setInterval(function() {
                 slide(index);
+                if(index==0){
+                    getPortrait('arr')//目的地旅客分布
+                }
+                else if(index==1){
+                    getPortrait('dep')//出发地旅客分布
+                }
+                else{
+                    getPortrait('guest')//旅客分布
+                }
                 index++;
                 if (index == len) {
                     index = 0;
@@ -241,6 +251,20 @@ function startFade($selector, interval) {
         var index = $channelList.index(this);
         slide(index);
     });
+    $distribute.click(function(){
+        $(this).addClass('active').siblings().removeClass('active');
+        var index = $distribute.index(this);
+        if(index==0){
+            getPortrait('arr')//目的地旅客分布
+        }
+        else if(index==1){
+            getPortrait('dep')//出发地旅客分布
+        }
+        else{
+            getPortrait('guest')//旅客分布
+        }
+        slide(index);
+    })
 
     function slide(index) {
         $content.eq(index).stop(true, false).animate({
@@ -249,6 +273,8 @@ function startFade($selector, interval) {
             opacity: '0'
         }, 300);
         $channelList.eq(index).addClass('active').siblings().removeClass('active');
+
+        $distribute.eq(index).addClass('active').siblings().removeClass('active');
     }
 }
 
@@ -258,7 +284,6 @@ function randomData() {
 }
 
 function drawChartMap(data) {
-    console.log(data)
     /*data = data.map(function(v) {
         v.value = !v.value ? 0 : ~~(v.value);
         return v;

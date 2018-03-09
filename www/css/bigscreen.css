@@ -137,16 +137,28 @@ body {
   top: 120px;
   padding: .8em;
 }
-.bigscreen .middle .chart-map li {
+.bigscreen .middle .chart-map .distribute li {
   float: left;
   margin: 0 .4em 0;
   padding-bottom: .3em;
   color: #0073ff;
   cursor: pointer;
 }
-.bigscreen .middle .chart-map li.active {
+.bigscreen .middle .chart-map .distribute li.active {
   color: #00dfff;
   border-bottom: 1px solid #00dfff;
+}
+.bigscreen .middle .chart-map .china-map {
+  position: relative;
+  height: 562px;
+}
+.bigscreen .middle .chart-map .china-map li {
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+}
+.bigscreen .middle .chart-map .china-map li:first-child {
+  opacity: 1;
 }
 .bigscreen .middle .chart-map > .map {
   height: 562px;

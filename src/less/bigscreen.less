@@ -142,7 +142,7 @@ body{
             top:120px;
             padding:.8em;
             // width: 605px;
-            li{
+            .distribute li{
                 float:left;
                 margin:0 .4em 0;
                 padding-bottom: .3em;
@@ -151,6 +151,20 @@ body{
                 &.active{
                     color:#00dfff;
                     border-bottom: 1px solid #00dfff;
+                }
+            }
+            .china-map{
+                position: relative;
+                height: 562px;
+                li{
+                    width: 100%;
+                    position: absolute;
+                    // color: white;
+                    opacity: 0;
+        
+                    &:first-child{
+                        opacity: 1;
+                    }
                 }
             }
             & > .map{
