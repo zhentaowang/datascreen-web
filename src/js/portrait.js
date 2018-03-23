@@ -217,7 +217,7 @@ function getPortrait(data, type) {
         portrait_type: !type ? '' : type
     });
     $.ajax({
-        url: 'http://122.224.248.26:7777/lj-userportrait/getUserPortraitResult',
+        url: 'http://datascreen.iairportcloud.com/lj-datascreen/getUserPortraitResult',
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(formData),
@@ -539,7 +539,7 @@ function getUserList(data, callback) {
         portrait_type: ''
     })
     $.ajax({
-        url: 'http://122.224.248.26:7777/lj-userportrait/getUserPortraitResult',
+        url: 'http://datascreen.iairportcloud.com/lj-datascreen/getUserPortraitResult',
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify(formData),

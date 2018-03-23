@@ -58,17 +58,16 @@ getMinuteData((new Date()).getTime() - 3600 * 48 * 1000);
 function getMinuteData(time) {
     var formData = User.appendAccessToken({
         date: time
-    })
+    });
 
     //丽江机场热门休息室/贵宾厅
     $.ajax({
         url: server + 'lj-datascreen/queryServiceDetail',
         type: 'GET',
-        // data: JSON.stringify(formData),
         success: function(data) {
             if(data.status==200){
                 var newArr = [];
-                data.data.map((k,index)=>{
+                data.data.forEach(function(val,index) {
                     if(index<10){
                         newArr.push(k)
                     }
@@ -135,7 +134,7 @@ function getMinuteData(time) {
             vm.agency.a = []
             vm.agency.b = []
             vm.agency.c = []
-            data.data.map((k,index)=>{
+            data.data.forEach(function(k,index){
                 if(k.type=='航司'){
                     if(vm.agency.a.length<10){
                         vm.agency.a.push(k)
@@ -191,7 +190,7 @@ function getPortrait(type) {
         dataType: 'json',
         success: function(data) {
             if (data.status ==200) {
-                data.data.map(k=>{
+                data.data.forEach(function(k,index){
                     k.name = k.city;
                     k.value = k.numbers;
                 })

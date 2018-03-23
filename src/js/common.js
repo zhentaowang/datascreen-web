@@ -1,5 +1,4 @@
-var server = 'http://122.224.248.26:7777/';
-//var server = 'http://192.168.1.107:8888/longteng/api/';
+var server = 'http://datascreen.iairportcloud.com/';
 
 var FieldName = {
     ACCESS_TOKEN: 'access_token',
