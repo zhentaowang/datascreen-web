@@ -137,6 +137,10 @@ body {
   top: 120px;
   padding: .8em;
 }
+.bigscreen .middle .chart-map .distribute {
+  position: absolute;
+  top: 0;
+}
 .bigscreen .middle .chart-map .distribute li {
   float: left;
   margin: 0 .4em 0;
@@ -443,8 +447,9 @@ body {
   left: 0;
 }
 .chinaMap {
-  height: 562px;
+  height: 536px;
   width: 100%;
+  margin-top: 28px;
 }
 .leaflet-left {
   display: none !important;
